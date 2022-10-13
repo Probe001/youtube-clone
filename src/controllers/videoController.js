@@ -1,37 +1,69 @@
+let videos = [
+	{
+		title: "video #1",
+		rating: 5,
+		comments: 2,
+		createdAt: "2 minutes ago",
+		views: 1,
+		id: 0,
+	},
+	{
+		title: "video #2",
+		rating: 4,
+		comments: 5,
+		createdAt: "5 minutes ago",
+		views: 489,
+		id: 1,
+	},
+	{
+		title: "video #3",
+		rating: 4.5,
+		comments: 23,
+		createdAt: "10 minutes ago",
+		views: 1502,
+		id: 2,
+	},
+];
+let id = 3;
+
 export const trending = (req, res) => {
-	const videos = [
-		{
-			title: "video #1",
-			rating: 5,
-			comments: 2,
-			createdAt: "2 miinutes ago",
-			views: 59,
-			id: 1,
-		},
-		{
-			title: "video #2",
-			rating: 4,
-			comments: 5,
-			createdAt: "5 miinutes ago",
-			views: 489,
-			id: 2,
-		},
-		{
-			title: "video #3",
-			rating: 4.5,
-			comments: 23,
-			createdAt: "10 miinutes ago",
-			views: 1502,
-			id: 3,
-		},
-	];
 	return res.render("home", { pageTitle: "Home", videos });
 };
-export const see = (req, res) => res.render("watch", { pageTitle: "Watch" });
-export const edit = (req, res) => res.render("edit", { pageTitle: "Edit" });
-export const search = (req, res) => res.send("Search");
-export const upload = (req, res) => res.send("upload");
-export const deleteVideo = (req, res) => {
+
+export const watch = (req, res) => {
 	console.log(req.params);
-	return res.send("delete video");
+	const { id } = req.params;
+	const video = videos[id];
+	console.log(`show video ${id}`);
+	return res.render("watch", { pageTitle: `Watching ${video.title}`, video });
+};
+export const getEdit = (req, res) => {
+	const { id } = req.params;
+	const video = videos[id];
+	return res.render("edit", { pageTitle: `Editing: ${video.title}`, video });
+};
+export const postEdit = (req, res) => {
+	const { id } = req.params;
+	console.log(req.body);
+	const { title } = req.body;
+	const video = videos[id];
+	video.title = title;
+	return res.redirect(`/videos/${id}`);
+};
+
+export const getUpload = (req, res) => {
+	return res.render("videoUpload", { pageTitle: "Video Uploading" });
+};
+export const postUpload = (req, res) => {
+	const { title } = req.body;
+	const newVideo = {
+		title,
+		rating: 5.0,
+		comments: 0,
+		createdAt: "0 minute ago",
+		views: 0,
+		id: id++,
+	};
+	videos.push(newVideo);
+	return res.redirect("/");
 };
