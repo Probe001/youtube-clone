@@ -5,20 +5,21 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec babel-node src/server.js"
+    "dev": "nodemon --exec babel-node src/init.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Probe001/youtube-clone.git"
   },
   "author": "Riam",
-  "license": "MIT",
+  "license": "MIT", 
   "bugs": {
     "url": "https://github.com/Probe001/youtube-clone/issues"
   },
   "homepage": "https://github.com/Probe001/youtube-clone#readme",
   "dependencies": {
     "express": "^4.18.1",
+    "mongoose": "^6.6.5",
     "morgan": "^1.10.0",
     "pug": "^3.0.2"
   },
