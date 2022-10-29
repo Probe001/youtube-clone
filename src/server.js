@@ -13,6 +13,7 @@ app.set("views", "./src/views");
 const logger = morgan("dev");
 app.use(logger);
 app.use(express.urlencoded({ extended: true })); // req.body를 생성한다.
+app.use(express.static(__dirname + "/public"));
 
 app.use("/", globalRouter);
 app.use("/videos", videoRouter);
