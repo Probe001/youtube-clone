@@ -1,5 +1,6 @@
 import "./db"; ///db 파일 자체를 import한다.
 import "./models/Video";
+import "./models/User";
 import app from "./server";
 
 const PORT = 4000;
