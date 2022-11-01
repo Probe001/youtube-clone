@@ -2,8 +2,11 @@ extends base.pug
 include mixins/video.pug
 
 block content 
-  ul
-    each item in videos 
-      +video(item)
-    else 
-      li Sorry nothing found.
+  if errorMessage
+    span=errorMessage
+  else
+    ul
+      each item in videos 
+        +video(item)
+      else 
+        li Sorry nothing found.
