@@ -3,23 +3,8 @@ import bcypt from "bcrypt";
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
 export const postJoin = async (req, res) => {
-	console.log(req.body);
 	const { name, username, email, password, password2, location } = req.body;
 	const pageTitle = "Join";
-	// const usernameExists = await User.exists({ username });
-	// if (usernameExists) {
-	// 	return res.render("join", {
-	// 		pageTitle: "Join",
-	// 		errorMessage: "This username is already taken",
-	// 	});
-	// }
-	// const eamilExists = await User.exists({ email });
-	// if (eamilExists) {
-	// 	return res.render("join", {
-	// 		pageTitle: "Join",
-	// 		errorMessage: "This email is already taken",
-	// 	});
-	// }
 	if (password !== password2) {
 		return res.status(400).render("join", {
 			pageTitle,
@@ -30,7 +15,7 @@ export const postJoin = async (req, res) => {
 	if (exists) {
 		return res.status(400).render("join", {
 			pageTitle,
-			errorMessage: `This email is already taken.`,
+			errorMessage: `This email/username is already taken.`,
 		});
 	}
 	try {
@@ -55,7 +40,6 @@ export const postLogin = async (req, res) => {
 	const pageTitle = "Login";
 	const { username, password } = req.body;
 	const user = await User.findOne({ username });
-	console.log(user);
 	if (!user) {
 		return res.status(400).render("login", {
 			pageTitle,
@@ -71,6 +55,8 @@ export const postLogin = async (req, res) => {
 			errorMessage: "Wrong password",
 		});
 	}
+	req.session.loggedIn = true;
+	req.session.user = user;
 	console.log("LOG USER IN! COMMING SOON!");
 	return res.redirect("/");
 };

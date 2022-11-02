@@ -5,7 +5,7 @@ html(lang="ko")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel='stylesheet', href="https://unpkg.com/mvp.css@1.12/mvp.css")
-    title #{pageTitle} | Youtube Clone
+    title #{pageTitle} | #{siteName}
   body  
     header
       h1=pageTitle
@@ -17,8 +17,16 @@ html(lang="ko")
               a(href="/") Home
             li
               a(href="/search") Search
-            li 
-              a(href="/join") Join
+            if loggedIn 
+              li
+                a(href="/logout") Log Out
+              li
+                a(href="/my-profile") #{loggedInUser.name}의 profile
+            else
+              li 
+                a(href="/join") Join
+              li
+                a(href="/login") Login
     main
       block content
   include partials/footer.pug
