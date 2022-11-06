@@ -27,13 +27,13 @@ app.use(
 	})
 );
 
-app.use((req, res, next) => {
-	console.log(req.headers.cookie);
-	req.sessionStore.all((error, sessions) => {
-		console.log(sessions);
-	});
-	next();
-});
+// app.use((req, res, next) => {
+// 	console.log(req.headers.cookie);
+// 	req.sessionStore.all((error, sessions) => {
+// 		console.log(sessions);
+// 	});
+// 	next();
+// });
 
 app.get("/add-one", (req, res, next) => {
 	req.session.potato += 1;
