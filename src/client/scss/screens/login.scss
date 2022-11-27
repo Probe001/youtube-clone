@@ -1,0 +1,47 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 10px auto;
+  input {
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: transparent;
+    border-bottom: 2px solid white;
+    margin-bottom: 20px;
+  }
+  button {
+    border: none;
+    background-color: $almostBlack;
+    color: white;
+    padding: 15px;
+    font-size: 20px;
+    margin-top: 10px;
+    span {
+      margin-left: 10px;
+    }
+  }
+}
+.github-login {
+  background-color: $githubBlue;
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
+  span {
+    margin-left: 10px;
+  }
+}
+.login-form__footer {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  a {
+    margin-left: 10px;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+}

@@ -2,9 +2,10 @@ extends base.pug
 include mixins/video.pug
 
 block content 
-  form(method="GET")
+  form(method="GET").search-form
     input(placeholder="Search by Title", name="keyword" type="text")
-    input(type="submit", value="Search now")
+    button(type="submit")
+      i.fa-solid.fa-magnifying-glass
 
   each video in videos 
     +video(video)

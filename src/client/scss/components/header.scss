@@ -1,0 +1,39 @@
+header {
+  padding: 10px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .header__logo {
+    i {
+      color: $youtubeRed;
+      font-size: 30px;
+      margin-right: 5px;
+    }
+    span {
+      color: white;
+      font-size: 28px;
+      font-family: 'youtubeFont';
+      text-transform: capitalize;
+    }
+  }
+  ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    li {
+      margin-left: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    i {
+      font-size: 18px;
+    }
+  }
+  .header__btn {
+    background-color: white;
+    color: $bgBlack;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+} 

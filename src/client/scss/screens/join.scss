@@ -1,0 +1,45 @@
+.join-form {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  label {
+    font-size: 18px;
+    margin-top: 10px;
+    input {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      font-size: 20px;
+      padding: 10px;
+      display: flex;
+      width: 100%;
+      border-bottom: 2px solid white;
+      margin-bottom: 10px;
+      color: white;
+      box-sizing: border-box;
+    }
+  }
+  button {
+    padding: 10px 0;
+    font-size: 20px;
+    box-sizing: border-box;
+    color: white;
+    background-color: $almostBlack;
+    cursor: pointer;
+    span {
+      margin-left: 10px;
+    }
+  }
+}
+.join--footer {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  a {
+    margin-left: 10px;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+}

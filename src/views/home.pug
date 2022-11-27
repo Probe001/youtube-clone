@@ -1,12 +1,12 @@
 extends base.pug
 include mixins/video.pug
 
-block content 
+block content
   if errorMessage
-    span=errorMessage
+    span.home-error #{errorMessage}
   else
-    ul
+    ul.home
       each item in videos 
         +video(item)
       else 
-        li Sorry nothing found.
+        li.not-found Sorry nothing found

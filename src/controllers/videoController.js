@@ -19,7 +19,6 @@ export const home = async (req, res) => {
 export const watch = async (req, res) => {
 	const { id } = req.params;
 	const video = await Video.findById(id).populate("owner");
-	console.log(video);
 
 	if (!video) {
 		return res.status(404).render("404", { pageTitle: "Page Not Found" });
@@ -38,7 +37,6 @@ export const getEdit = async (req, res) => {
 	if (String(video.owner) !== _id) {
 		return res.status(403).redirect("/");
 	}
-	console.log(video);
 	return res.render("edit", { pageTitle: `Editing`, video });
 };
 export const postEdit = async (req, res) => {
@@ -96,7 +94,6 @@ export const postUpload = async (req, res) => {
 			hashtags: Video.formatHashtags(hashtags),
 		});
 		const user = await User.findById(_id);
-		console.log("유저", user);
 		user.videos.push(newVideo._id);
 		await user.save();
 		return res.redirect("/");
@@ -136,6 +133,5 @@ export const search = async (req, res) => {
 			},
 		});
 	}
-	console.log(videos);
 	return res.render("search", { pageTitle: "Search", videos });
 };

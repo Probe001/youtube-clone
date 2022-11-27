@@ -49,7 +49,7 @@ export const postLogin = async (req, res) => {
 	}
 	// check if password correct
 	const ok = await bcypt.compare(password, user.password);
-	console.log(ok);
+	// console.log(ok);
 	if (!ok) {
 		return res.status(400).render("login", {
 			pageTitle,
@@ -83,7 +83,6 @@ export const finishGithubLogin = async (req, res) => {
 	};
 	const params = new URLSearchParams(config).toString();
 	const finalUrl = `${baseUrl}?${params}`;
-	console.log(finalUrl);
 	const tokenRequest = await (
 		await fetch(finalUrl, {
 			method: "POST",
@@ -92,7 +91,6 @@ export const finishGithubLogin = async (req, res) => {
 			},
 		})
 	).json();
-	console.log(tokenRequest);
 	if ("access_token" in tokenRequest) {
 		const { access_token } = tokenRequest;
 		const apiUrl = "https://api.github.com";
@@ -110,8 +108,6 @@ export const finishGithubLogin = async (req, res) => {
 				},
 			})
 		).json();
-		console.log("user:", userData);
-		console.log("Email:", emailData);
 		const emailObj = emailData.find((email) => {
 			return email.primary === true && email.verified === true;
 		});
@@ -153,7 +149,6 @@ export const postEdit = async (req, res) => {
 		body: { name, email, username, location },
 		file,
 	} = req;
-	console.log(file);
 	const searchParam = [];
 	if (sessionUsername !== username) {
 		searchParam.push({ username });
@@ -223,7 +218,6 @@ export const see = async (req, res) => {
 	if (!user) {
 		return res.status(404).render("404", { pageTitle: "User not found" });
 	}
-	console.log(user);
 	return res.render("users/profile", {
 		pageTitle: `${user.name}의 Profile`,
 		user,

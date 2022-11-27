@@ -1,0 +1,23 @@
+header
+  a(href="/").header__logo 
+    i.fa-brands.fa-youtube 
+    span YouTube
+  nav
+    ul
+      li
+        a(href="/search") 
+          i.fa-solid.fa-magnifying-glass
+      if loggedIn 
+        li
+          a(href="/videos/upload") Upload Video
+        li
+          a(href=`/users/${loggedInUser._id}`) #{loggedInUser.name}의 Profile
+        li
+          a(href="/users/logout") Log Out
+        li
+          a(href="/users/edit") Profile Edit
+      else
+        li 
+          a(href="/join") Join
+        li 
+          a(href="/login").header__btn Login

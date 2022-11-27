@@ -1,0 +1,44 @@
+.video__mixin {
+  border: 1px solid white;
+  line-height: 120%;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  h4 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  ul {
+    display: flex;
+    li {
+      margin-right: 5px;
+      margin-bottom: 10px;
+    }
+  }
+  small {
+    font-size: 12px;
+  }
+}
+@media all and (min-width:1500px){
+  .video__mixin {
+    width: 12.5%
+  }
+}
+@media all and (min-width:768px) and (max-width:1499px){
+  .video__mixin {
+    width: 33%
+  }
+}
+@media all and (min-width:480px) and (max-width:767px){
+  .video__mixin {
+    width: 50%
+  }
+}
+@media all and (max-width:479px){
+  .video__mixin {
+    width: 100%
+  }
+}
