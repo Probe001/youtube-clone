@@ -148,11 +148,12 @@ export const getEdit = (req, res) => {
 export const postEdit = async (req, res) => {
 	const {
 		session: {
-			user: { _id, username: sessionUsername, email: sessionEmail },
+			user: { _id, username: sessionUsername, email: sessionEmail, avatarUrl },
 		},
 		body: { name, email, username, location },
+		file,
 	} = req;
-
+	console.log(file);
 	const searchParam = [];
 	if (sessionUsername !== username) {
 		searchParam.push({ username });
@@ -169,10 +170,10 @@ export const postEdit = async (req, res) => {
 			});
 		}
 	}
-
 	const updatedUser = await User.findByIdAndUpdate(
 		_id,
 		{
+			avatarUrl: file ? file.path : avatarUrl,
 			name,
 			email,
 			username,
@@ -186,5 +187,45 @@ export const postEdit = async (req, res) => {
 
 	return res.redirect("/users/edit");
 };
-export const edit = (req, res) => res.send("User Edit");
-export const see = (req, res) => res.send("see user");
+
+export const getChangePassword = (req, res) => {
+	return res.render("users/change-password", { pageTitle: "Change Password" });
+};
+export const postChangePassword = async (req, res) => {
+	const {
+		session: {
+			user: { _id },
+		},
+		body: { oldPassword, newPassword1, newPassword2 },
+	} = req;
+	const user = await User.findById(_id);
+	if (newPassword1 !== newPassword2) {
+		return res.status(400).render("users/change-password", {
+			pageTitle: "Change Password",
+			errorMessage: "Password does not match the confirmation.",
+		});
+	}
+	const machedOriginPW = await bcypt.compare(oldPassword, user.password);
+	if (!machedOriginPW) {
+		return res.status(400).render("users/change-password", {
+			pageTitle: "Change Password",
+			errorMessage: "The current password is incorrect",
+		});
+	}
+	user.password = newPassword1;
+	await user.save();
+	// req.session.user.password = user.password;
+	return res.redirect("/users/logout");
+};
+export const see = async (req, res) => {
+	const { id } = req.params;
+	const user = await User.findById(id).populate("videos");
+	if (!user) {
+		return res.status(404).render("404", { pageTitle: "User not found" });
+	}
+	console.log(user);
+	return res.render("users/profile", {
+		pageTitle: `${user.name}의 Profile`,
+		user,
+	});
+};

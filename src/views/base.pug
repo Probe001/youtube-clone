@@ -5,7 +5,9 @@ html(lang="ko")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel='stylesheet', href="https://unpkg.com/mvp.css@1.12/mvp.css")
+    link(rel="stylesheet", href="/assets/css/styles.css")
     title #{pageTitle} | #{siteName}
+    script(defer src="/assets/js/main.js")
   body  
     header
       h1=pageTitle
@@ -19,13 +21,15 @@ html(lang="ko")
               li
                 a(href="/videos/upload") Upload Video
               li
+                a(href=`/users/${loggedInUser._id}`) My Profile
+              li
                 a(href="/users/logout") Log Out
               li
                 a(href="/users/edit") #{loggedInUser.name}의 profile
             else
               li 
                 a(href="/join") Join
-              li
+              li 
                 a(href="/login") Login
     main
       block content
