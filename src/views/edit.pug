@@ -1,9 +1,13 @@
 extends base.pug
 
 block content 
-  h4 Change Title of video
-  form(method="POST")
-    input(name="title", placeholder="Video Title", value=video.title, required)
-    input(placeholder="Video Description", name="description", required, minlength=20, value=video.description)
-    input(placeholder="Hashtags, separated by comma.", name="hashtags", value=video.hashtags.join())
-    input(value="저장", type="submit")
+  form(method="POST").edit-form
+    label Title
+      input(name="title", placeholder="Video Title", value=video.title, required)
+    label Description
+      input(placeholder="Video Description", name="description", required, minlength=20, value=video.description)
+    label Hash Tags
+      input(placeholder="Hashtags, separated by comma.", name="hashtags", value=video.hashtags.join())
+    button(ype="submit")
+      i.fa-solid.fa-floppy-disk 
+        span Save

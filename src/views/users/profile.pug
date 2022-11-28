@@ -2,7 +2,7 @@ extends ../base
 include ../mixins/video
 
 block content 
-  ul
+  ul.profile
     each video in user.videos
       +video(video)
     else

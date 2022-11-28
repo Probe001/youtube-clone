@@ -1,0 +1,27 @@
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  label {
+    margin-bottom: 20px;
+  }
+  input {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid white;
+    background-color: transparent;
+    color: white;
+  }
+  button {
+    padding: 10px 0;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+}

@@ -1,5 +1,4 @@
 .video__mixin {
-  border: 1px solid white;
   line-height: 120%;
   padding: 15px;
   box-sizing: border-box;
@@ -10,6 +9,9 @@
     font-size: 30px;
     font-weight: 600;
     margin-bottom: 15px;
+    &:hover {
+      color: $hoverWhite;
+    }
   }
   ul {
     display: flex;
@@ -24,7 +26,7 @@
 }
 @media all and (min-width:1500px){
   .video__mixin {
-    width: 12.5%
+    width: 25%
   }
 }
 @media all and (min-width:768px) and (max-width:1499px){
